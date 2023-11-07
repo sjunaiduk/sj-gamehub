@@ -9,7 +9,8 @@ export const GameCardContainer = ({ children }: Props) => {
     <Box
       width={{
         base: "350px",
-        md: "304px",
+        md: "300px",
+        lg: "290px",
       }}
       overflow="hidden"
       borderRadius={15}
