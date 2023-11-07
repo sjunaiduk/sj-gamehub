@@ -1,28 +1,21 @@
 import useGames from "../hooks/useGames";
-import {
-  Button,
-  SimpleGrid,
-  Skeleton,
-  SkeletonText,
-  Text,
-} from "@chakra-ui/react";
+import { SimpleGrid, Text, VStack } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { GameCardContainer } from "./GameCardContainer";
 
 export const GameGrid = () => {
-  const { games, error, isLoading, setLoading } = useGames();
+  const { data, error, isLoading } = useGames();
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
-    <>
-      <Button onClick={() => setLoading(!isLoading)}>Toggle Loading</Button>
+    <VStack>
       {error && <Text>{error}</Text>}
       <SimpleGrid
         columns={{
           sm: 1,
           md: 2,
           lg: 3,
-          xl: 4,
+          xl: 5,
         }}
         spacing={6}
         paddingInline="10px"
@@ -34,7 +27,7 @@ export const GameGrid = () => {
             </GameCardContainer>
           ))}
 
-        {games.map((game) => (
+        {data.map((game) => (
           <>
             <GameCardContainer>
               <GameCard key={game.id} game={game} />
@@ -42,6 +35,6 @@ export const GameGrid = () => {
           </>
         ))}
       </SimpleGrid>
-    </>
+    </VStack>
   );
 };

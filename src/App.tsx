@@ -10,6 +10,9 @@ function App() {
         base: `"nav" "main"`,
         lg: `"nav nav" "aside main"`,
       }}
+      templateColumns={{
+        lg: "max-content 1fr",
+      }}
     >
       <GridItem gridArea="nav">
         <Navbar />

@@ -10,11 +10,11 @@ export const GameCardContainer = ({ children }: Props) => {
       width={{
         base: "350px",
         md: "300px",
-        lg: "290px",
+        lg: "270px",
+        xl: "220px",
       }}
       overflow="hidden"
       borderRadius={15}
-      marginInline="auto"
     >
       {children}
     </Box>
