@@ -1,15 +1,13 @@
 import { Game } from "../models/Game";
-import { Genre } from "../models/Genre";
-import { Platform } from "../models/Platform";
+import GameQuery from "../models/GameQuery";
 import useData from "./useData";
 
-const useGames = (selectedGenre : Genre | null,
-    selectedPlatform: Platform | null) => useData<Game>("/games",
-[selectedGenre, selectedPlatform],
+const useGames = (gameQuery: GameQuery) => useData<Game>("/games",
+[gameQuery],
 {
     params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id
     },
 });
 
