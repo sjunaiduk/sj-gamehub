@@ -1,29 +1,23 @@
 import {
   HStack,
-  Text,
   Image,
   List,
   ListItem,
-  Spinner,
   Skeleton,
   SkeletonText,
-  CardBody,
-  Card,
+  Button,
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import CropImage from "../services/crop-image";
+import { Genre } from "../models/Genre";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { data, isLoading } = useGenres();
 
-  //   const data = [
-  //     { name: "Action", genre: "Action" },
-  //     { name: "Adventure", genre: "Adventure" },
-  //     { name: "RPG", genre: "Role-playing" },
-  //     { name: "FPS", genre: "First-person shooter" },
-  //     { name: "Simulation", genre: "Simulation" },
-  //     // Add more genres as needed
-  //   ];
   const skeletons = Array(15).fill(0);
   return (
     <>
@@ -53,7 +47,13 @@ const GenreList = () => {
                   boxSize="32px"
                   borderRadius={5}
                 />
-                <Text>{genre.name}</Text>
+                <Button
+                  onClick={() => onSelectGenre(genre)}
+                  fontSize={"lg"}
+                  variant={"link"}
+                >
+                  {genre.name}
+                </Button>
               </HStack>
             </ListItem>
           ))}
