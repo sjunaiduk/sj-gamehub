@@ -10,13 +10,7 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <Card>
-      <Image
-        src={
-          game?.background_image
-            ? CropImage(game?.background_image)
-            : "https://www.scotsman.com/webimg/b25lY21zOjA0NDEwNDNjLWUwYzktNGU5Yi05ZGYwLWFkNzk5MjliYWM1NTpkYzRlM2UyZi1mMTI1LTRkNmQtYTcxOC0zYjJlNDcwMTE5Nzc=.jpg?width=1200&enable=upscale"
-        }
-      />
+      <Image src={CropImage(game?.background_image)} />
       <CardBody>
         <HStack justifyContent="space-between" marginBottom={3}>
           <PlatformIconsList
