@@ -28,6 +28,7 @@ const PlatformIconsList = ({ platforms }: Props) => {
     ios: MdPhoneIphone,
     nintendo: BsNintendoSwitch,
   };
+
   return (
     <HStack color="gray.500" marginY={1}>
       {platforms.map((platform) => (
