@@ -11,7 +11,7 @@ const SearchGamesInput = ({ onSearch }: Props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (ref.current?.value) onSearch(ref.current.value);
+        onSearch(ref.current?.value || "");
       }}
     >
       <InputGroup>
