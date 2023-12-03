@@ -10,17 +10,15 @@ export const client = axios.create({
 
 class ApiClient<T> {
   endpoint: string;
-  config?: AxiosRequestConfig;
 
-  constructor(endpoint: string, config?: AxiosRequestConfig) {
+  constructor(endpoint: string) {
     this.endpoint = endpoint;
-    this.config = config;
   }
 
-  getAll = () => {
+  getAll = (config: AxiosRequestConfig) => {
     return client
       .get<FetchResponse<T>>(this.endpoint, {
-        ...this.config,
+        ...config,
       })
       .then((res) => {
         return res.data;
