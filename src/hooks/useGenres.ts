@@ -1,6 +1,11 @@
-import { Genre } from "../models/Genre";
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import genreClient from "../services/genreService";
 
-const useGenres = () => useData<Genre>("/genres");
+const useGenres = () =>
+  useQuery({
+    queryKey: ["genres"],
+    queryFn: genreClient.getAll,
+    staleTime: 10 * 1000,
+  });
 
 export default useGenres;
