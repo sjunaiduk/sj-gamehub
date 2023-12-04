@@ -14,7 +14,7 @@ import { Genre } from "../models/Genre";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenre: number | null;
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
@@ -43,8 +43,8 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
         </List>
       ) : (
         <List>
-          {data?.results.map((genre) => (
-            <ListItem key={genre.id} paddingY={"5px"}>
+          {data?.results.map((genre, index) => (
+            <ListItem key={index} paddingY={"5px"}>
               <HStack>
                 <Image
                   src={CropImage(genre.image_background)}
@@ -58,7 +58,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                   fontSize={"lg"}
                   variant={"link"}
                   fontWeight={`${
-                    selectedGenre?.id === genre.id ? "bold" : "normal"
+                    selectedGenre === genre.id ? "bold" : "normal"
                   }`}
                   whiteSpace={"normal"}
                   textAlign="left"
