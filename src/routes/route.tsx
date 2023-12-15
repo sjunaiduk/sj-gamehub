@@ -3,6 +3,7 @@ import HomePage from "../pages/HomePage";
 import GamePage from "../pages/GamePage";
 import LayoutPage from "../pages/LayoutPage";
 import ErrorPage from "../pages/ErrorPage";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -11,12 +12,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "games/:slugOrId",
-        element: <GamePage />,
+        path: "",
+        element: <ProtectedRoutes />,
+        children: [
+          {
+            path: "home",
+            element: <HomePage />,
+          },
+          {
+            path: "games/:slugOrId",
+            element: <GamePage />,
+          },
+        ],
       },
     ],
   },

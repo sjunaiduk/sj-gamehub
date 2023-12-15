@@ -7,6 +7,7 @@ import "./index.css";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/route.tsx";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const client = new QueryClient();
 
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <QueryClientProvider client={client}>
-         <RouterProvider router={router} />
+        <GoogleOAuthProvider clientId="884079413907-b52mkjqvs354m81lk6l2ufqnmadjuel3.apps.googleusercontent.com">
+          <RouterProvider router={router} />
+        </GoogleOAuthProvider>
         <ReactQueryDevtools />
       </QueryClientProvider>
     </ChakraProvider>
