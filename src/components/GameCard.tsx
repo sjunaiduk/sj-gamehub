@@ -3,13 +3,15 @@ import { Card, CardBody, HStack, Heading, Image } from "@chakra-ui/react";
 import PlatformIconsList from "./PlatformIconsList";
 import CriticScore from "./CriticScore";
 import CropImage from "../services/crop-image";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   game: Game;
 }
 const GameCard = ({ game }: Props) => {
+  const navigate = useNavigate();
   return (
-    <Card>
+    <Card onClick={() => navigate(`/games/${game.slug}`)}>
       <Image src={CropImage(game?.background_image)} />
       <CardBody>
         <HStack justifyContent="space-between" marginBottom={3}>

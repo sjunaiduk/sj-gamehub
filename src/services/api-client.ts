@@ -1,5 +1,4 @@
 import axios from "axios";
-import { FetchResponse } from "../models/FetchResponse";
 import { AxiosRequestConfig } from "axios";
 export const client = axios.create({
   params: {
@@ -8,7 +7,7 @@ export const client = axios.create({
   baseURL: "https://api.rawg.io/api",
 });
 
-class ApiClient<T> {
+class ApiClient<TResponse> {
   endpoint: string;
 
   constructor(endpoint: string) {
@@ -17,12 +16,18 @@ class ApiClient<T> {
 
   getAll = (config: AxiosRequestConfig) => {
     return client
-      .get<FetchResponse<T>>(this.endpoint, {
+      .get<TResponse>(this.endpoint, {
         ...config,
       })
       .then((res) => {
         return res.data;
       });
+  };
+
+  getSingle = (slugOrId: string) => {
+    return client
+      .get<TResponse>(`${this.endpoint}/${slugOrId}`)
+      .then((res) => res.data);
   };
 }
 
