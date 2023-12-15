@@ -9,7 +9,6 @@ interface Props {
 }
 const PlatformsList = ({ selectedPlatform, onSelectPlatform }: Props) => {
   const { data, error } = usePlatforms();
-
   const curPlatform = data?.results.find(
     (platform) => platform.id == selectedPlatform
   );
